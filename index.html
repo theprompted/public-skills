@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Claude Code Skills from The Prompted</title>
+    <meta name="description" content="The free Claude Code skills behind every video we publish. Ad research, image ad generation, advertorial funnel building — all installable into Claude Code in minutes.">
+    <style>
+        /* PromptedOS Design System */
+        :root {
+            --bg-page: #F8F8F7;
+            --bg-white: #ffffff;
+            --bg-blue: #EBF9FF;
+            --bg-purple: #F7F1FF;
+            --bg-yellow: #FFFDE7;
+            --bg-green: #E8F5E9;
+            --accent-teal: #53DBC9;
+            --accent-yellow: #FFDE00;
+            --accent-purple: #9D4EDD;
+            --accent-red: #E53935;
+            --text-black: #000000;
+            --text-dark: #1a1a1a;
+            --text-gray: #4a4a4a;
+            --text-muted: #6b6b6b;
+            --shadow-lg: -0.31rem 0.31rem 0 0 #383838;
+            --shadow-sm: -0.19rem 0.19rem 0 0 #383838;
+            --border: 2px solid black;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--bg-page);
+            padding: 2rem 1.5rem;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        h1, h2, h3, h4 {
+            font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+            font-weight: 700;
+            color: var(--text-black);
+        }
+
+        h1 { font-size: 2.25rem; line-height: 1.2; }
+        h2 { font-size: 1.5rem; }
+        h3 { font-size: 1.125rem; }
+        h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-gray);
+        }
+
+        a { color: var(--text-black); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+        a:hover { color: var(--accent-purple); }
+
+        /* Header */
+        .hero {
+            background: var(--bg-white);
+            border: var(--border);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .hero h4 { margin-bottom: 0.75rem; color: var(--text-gray); }
+        .hero h1 { margin-bottom: 1rem; }
+        .hero .hero-sub {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+        }
+
+        /* Skill cards */
+        .skill-card {
+            background: var(--bg-white);
+            border: var(--border);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.75rem;
+            position: relative;
+        }
+        .skill-card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: var(--border);
+            background: var(--bg-page);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .skill-card-header h2 { font-size: 1.35rem; }
+        .skill-card-body {
+            padding: 1.5rem;
+        }
+        .skill-card-body p { margin-bottom: 1rem; color: var(--text-dark); }
+        .skill-card-body p:last-of-type { margin-bottom: 1.25rem; }
+        .skill-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+        }
+        .skill-meta-item {
+            color: var(--text-muted);
+        }
+        .skill-meta-item strong {
+            font-family: ui-monospace, SFMono-Regular, monospace;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .skill-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            font-family: ui-monospace, SFMono-Regular, monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            border: 2px solid black;
+            border-radius: 4px;
+        }
+        .badge-free {
+            background: var(--accent-teal);
+            color: var(--text-black);
+        }
+        .badge-full {
+            background: var(--text-dark);
+            color: var(--accent-teal);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.25rem;
+            font-family: ui-monospace, SFMono-Regular, monospace;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: var(--border);
+            box-shadow: var(--shadow-sm);
+            background: var(--accent-teal);
+            color: var(--text-black);
+            transition: transform 0.05s, box-shadow 0.05s;
+        }
+        .btn:hover { color: var(--text-black); }
+        .btn:active {
+            transform: translate(-3px, 3px);
+            box-shadow: 0 0 0 0 #383838;
+        }
+        .btn-secondary {
+            background: var(--bg-white);
+        }
+        .btn-dark {
+            background: var(--text-dark);
+            color: var(--accent-teal);
+        }
+        .btn-dark:hover { color: var(--accent-teal); }
+
+        /* Full-version CM card */
+        .skill-card.is-full {
+            background: var(--bg-white);
+        }
+        .skill-card.is-full .skill-card-header {
+            background: var(--bg-purple);
+        }
+
+        /* Upgrade card */
+        .upgrade-card {
+            background: var(--text-dark);
+            border: var(--border);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.75rem;
+            padding: 2rem;
+            color: #fff;
+        }
+        .upgrade-card h2 {
+            color: var(--accent-teal);
+            margin-bottom: 0.75rem;
+        }
+        .upgrade-card p { color: #ccc; margin-bottom: 1rem; }
+        .upgrade-features {
+            margin: 1.25rem 0;
+            padding: 0;
+            list-style: none;
+        }
+        .upgrade-features li {
+            color: #ccc;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #333;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .upgrade-features li::before {
+            content: "+";
+            color: var(--accent-teal);
+            font-family: ui-monospace, monospace;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .upgrade-card .btn-dark {
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            margin-top: 1rem;
+        }
+        .footer a { color: var(--text-muted); }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+        <h4>The Prompted · Free Skills</h4>
+        <h1>The Claude Code skills behind every video we publish.</h1>
+        <p class="hero-sub">
+            Each of the skills below is the working version of a system we built for our own DTC stores
+            and shipped on YouTube. Install them in Claude Code, run them against your own product,
+            see what comes out. No login. No paywall.
+        </p>
+    </div>
+
+    <!-- Skill 1: Ad Intel Lite -->
+    <div class="skill-card">
+        <div class="skill-card-header">
+            <h2>Ad Intel Lite</h2>
+            <span class="badge badge-free">Free · Lite</span>
+        </div>
+        <div class="skill-card-body">
+            <p>
+                Point Claude Code at any competitor brand and get back a research brief: the angles they
+                run on Meta, the audience cues they bake into copy, and the format patterns repeating
+                across their creative. Six of the seven research questions answered with one command —
+                no scraping infrastructure, no spy tool subscription.
+            </p>
+            <div class="skill-meta">
+                <span class="skill-meta-item"><strong>Use it when:</strong> you're about to launch in a niche and don't know who's already winning</span>
+            </div>
+            <div class="skill-actions">
+                <a href="https://theprompted.github.io/ad-intel-lite/" class="btn" target="_blank">Get Ad Intel Lite →</a>
+                <a href="https://www.youtube.com/@theprompted" class="btn btn-secondary" target="_blank">Watch the video</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill 2: Ad Relay -->
+    <div class="skill-card">
+        <div class="skill-card-header">
+            <h2>Ad Relay</h2>
+            <span class="badge badge-free">Free · Lite</span>
+        </div>
+        <div class="skill-card-body">
+            <p>
+                Answer three questions and Claude Code builds 40 Facebook ads end-to-end — research,
+                copy, image prompts, and final composites — in about 30 minutes for under $2 in API spend.
+                Each agent does one job, hands off, and disappears. No babysitting, no orchestrator hallucinating
+                its way through the campaign.
+            </p>
+            <div class="skill-meta">
+                <span class="skill-meta-item"><strong>Use it when:</strong> you've got a new product launching and need volume from day one</span>
+            </div>
+            <div class="skill-actions">
+                <a href="https://theprompted.github.io/ad-relay/" class="btn" target="_blank">Get Ad Relay →</a>
+                <a href="https://youtu.be/AeGW6IWohhQ" class="btn btn-secondary" target="_blank">Watch the video</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill 3: Funnel Relay Lite -->
+    <div class="skill-card">
+        <div class="skill-card-header">
+            <h2>Funnel Relay Lite</h2>
+            <span class="badge badge-free">Free · Lite</span>
+        </div>
+        <div class="skill-card-body">
+            <p>
+                Bring your own avatar, answer two questions, and Claude Code produces a complete two-step
+                advertorial funnel — headline, education page, offer page, editorial images — in about an hour
+                for 40¢ in API spend. The funnel you used to pay $7,000 and wait eight weeks for, built while
+                you go pick your kid up from daycare.
+            </p>
+            <div class="skill-meta">
+                <span class="skill-meta-item"><strong>Use it when:</strong> you've validated the angle and want to test it without paying an agency to find out</span>
+            </div>
+            <div class="skill-actions">
+                <a href="https://theprompted.github.io/funnel-relay-lite/" class="btn" target="_blank">Get Funnel Relay Lite →</a>
+                <a href="https://youtu.be/_8K4BorXhos" class="btn btn-secondary" target="_blank">Watch the video</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill 4: CM System -->
+    <div class="skill-card is-full">
+        <div class="skill-card-header">
+            <h2>Contribution Margin System</h2>
+            <span class="badge badge-full">Syndicate only</span>
+        </div>
+        <div class="skill-card-body">
+            <p>
+                A real-time contribution margin tracker for your Shopify store. Pulls orders and ad spend,
+                accounts for COGS, shipping, processing fees, and returns. Updates every 15 minutes with
+                your <em>actual</em> margin — not revenue minus ad spend. Ask Claude Code things like
+                <em>"how much did we make yesterday,"</em> <em>"compare this week to last week,"</em> or
+                <em>"what hours are we losing money"</em> and get answers from your live data.
+            </p>
+            <div class="skill-meta">
+                <span class="skill-meta-item"><strong>Use it when:</strong> you're spending real money on Meta and need to see profitability in something tighter than 24-hour windows</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+                This one is full-version only — it's available inside the Syndicate alongside everything else we ship.
+            </p>
+            <div class="skill-actions">
+                <a href="https://scale.theprompted.co" class="btn btn-dark" target="_blank">Get full access →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upgrade card -->
+    <div class="upgrade-card">
+        <h2>Want the full versions?</h2>
+        <p>
+            The lite skills above each cover the working core of the system. The full versions, available
+            inside our Syndicate, add the parts most operators eventually need:
+        </p>
+        <ul class="upgrade-features">
+            <li>Landing page analysis, frame-by-frame video breakdowns, and contrast templates (full Ad Intel)</li>
+            <li>Headline-first scripts, scene-locked imagery, and the orchestrator that runs the whole relay end-to-end (full Ad Relay)</li>
+            <li>Avatar construction, segment scoring, and the editor agent that catches AI tells before they ship (full Funnel Relay)</li>
+            <li>The Contribution Margin System above, with live Shopify + Meta integration</li>
+            <li>Everything else we ship — new skills, methodologies, and systems as they're built</li>
+        </ul>
+        <p style="margin-bottom: 1.5rem;">
+            One subscription. All the full systems. New skills as we publish them.
+        </p>
+        <a href="https://scale.theprompted.co" class="btn btn-dark" target="_blank">Get full access →</a>
+    </div>
+
+    <div class="footer">
+        <p>Built by <a href="https://theprompted.co" target="_blank">The Prompted</a> · <a href="https://www.youtube.com/@theprompted" target="_blank">YouTube</a> · <a href="https://github.com/theprompted/skills" target="_blank">GitHub</a></p>
+    </div>
+
+</div>
+</body>
+</html>
